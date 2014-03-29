@@ -14,7 +14,7 @@ public class GreetingController {
 
     @RequestMapping (value = "/greeting", method = RequestMethod.GET)
     public String greeting(@RequestParam (value = "name", required = false, defaultValue = "World") String name, Model model){
-        System.out.println("In controller...");
+        System.out.println("In controller..." + name);
         model.addAttribute("name", name);
         return "greeting";
     }

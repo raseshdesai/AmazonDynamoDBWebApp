@@ -19,12 +19,7 @@
 
     <dependencies>
 
-        <!--<dependency>-->
-            <!--<groupId>asm</groupId>-->
-            <!--<artifactId>asm-all</artifactId>-->
-            <!--<version>3.3</version>-->
-        <!--</dependency>-->
-
+        <!-- Spring Web and Spring Web MVC -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -36,25 +31,26 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!-- End of Spring Web and Spring Web MVC -->
 
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring3</artifactId>
-            <version>2.1.2.RELEASE</version>
-        </dependency>
-
+        <!-- JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- End of JSTL -->
 
+
+        <!-- Test scope -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <!-- End of Test scope -->
+
     </dependencies>
 
 
