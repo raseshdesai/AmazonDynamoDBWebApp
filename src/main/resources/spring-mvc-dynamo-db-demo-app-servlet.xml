@@ -3,20 +3,37 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
-
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
                             http://www.springframework.org/schema/mvc
                                 http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
                             http://www.springframework.org/schema/beans
                                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                             http://www.springframework.org/schema/context
-                                http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+                                http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <mvc:resources mapping="/resources/**" location="/resources/"/> <!-- ...not used currently but maybe useful when you have resources -->
 
     <mvc:annotation-driven/>
 
-    <context:component-scan base-package="hello"/>
+    <context:component-scan base-package="dynamodb"/>
+
+    <context:property-placeholder location="classpath:AwsCredentials.properties" />
+
+    <util:properties id="awsCredentialsProperties" location="classpath:AwsCredentials.properties"/>
+
+    <bean id="customAWSCredentials" class="dynamodb.demo.util.CustomAWSCredentials">
+        <constructor-arg name="awsCredentialProperties" ref="awsCredentialsProperties"/>
+    </bean>
+
+    <bean class="dynamodb.demo.dao.AmazonDynamoDBProductDAO" id="productDAO"/>
+
+    <bean id="dynamoDBClient" class="com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient">
+        <constructor-arg name="awsCredentials" ref="customAWSCredentials"/>
+    </bean>
+
+    <bean id="awsUtil" class="dynamodb.demo.util.AWSUtilImpl"/>
 
     <bean class= "org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"

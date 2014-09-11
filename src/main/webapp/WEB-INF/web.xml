@@ -1,20 +1,24 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         version="3.0">
+	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
 
     <display-name>Spring Web MVC Application</display-name>
 
     <servlet>
-        <servlet-name>spring-mvc-sample-app</servlet-name>
+        <servlet-name>spring-mvc-dynamo-db-demo-app</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/classes/spring-mvc-dynamo-db-demo-app-servlet.xml</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <!-- ...that means it'll look for <servlet-name>-servlet.xml => spring-mvc-sample-app-servlet.xml for context configuration -->
+    <!-- ...that means it'll look for <servlet-name>-servlet.xml => spring-mvc-dynamo-db-dynamodb-app-servlet.xml for context configuration -->
 
     <servlet-mapping>
-        <servlet-name>spring-mvc-sample-app</servlet-name>
+        <servlet-name>spring-mvc-dynamo-db-demo-app</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>
